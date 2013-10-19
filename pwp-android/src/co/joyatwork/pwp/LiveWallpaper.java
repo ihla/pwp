@@ -17,14 +17,10 @@ package co.joyatwork.pwp;
 
 import android.util.Log;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.ApplicationListener;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.badlogic.gdx.backends.android.AndroidLiveWallpaperService;
 import com.badlogic.gdx.backends.android.AndroidWallpaperListener;
-import com.badlogic.gdx.graphics.GL10;
-import com.badlogic.gdx.math.MathUtils;
 
 public class LiveWallpaper extends AndroidLiveWallpaperService {
 	
@@ -41,7 +37,7 @@ public class LiveWallpaper extends AndroidLiveWallpaperService {
 	
 	// implement AndroidWallpaperListener additionally to ApplicationListener 
 	// if you want to receive callbacks specific to live wallpapers
-	public static class MyLiveWallpaperListener extends MeshShaderTest implements AndroidWallpaperListener {
+	public static class MyLiveWallpaperListener extends RotatingBobDemo implements AndroidWallpaperListener {
 		
 		@Override
 		public void offsetChange (float xOffset, float yOffset, float xOffsetStep, float yOffsetStep, int xPixelOffset,
