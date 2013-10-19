@@ -25,10 +25,74 @@ import com.badlogic.gdx.graphics.Mesh;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.VertexAttribute;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
+import com.badlogic.gdx.input.GestureDetector;
+import com.badlogic.gdx.input.GestureDetector.GestureListener;
 import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
 public class RotatingBobDemo extends InputAdapter implements ApplicationListener {
+
+	public static class MyGestureListener implements GestureListener {
+
+		@Override
+		public boolean touchDown(float x, float y, int pointer, int button) {
+			Gdx.app.log(TAG, "touchDown()");
+			return false;
+		}
+
+		@Override
+		public boolean tap(float x, float y, int count, int button) {
+			Gdx.app.log(TAG, "tap()");
+			return false;
+		}
+
+		@Override
+		public boolean longPress(float x, float y) {
+			Gdx.app.log(TAG, "longPress()");
+			return false;
+		}
+
+		@Override
+		public boolean fling(float velocityX, float velocityY, int button) {
+			Gdx.app.log(TAG, "fling()");
+			return false;
+		}
+
+		@Override
+		public boolean pan(float x, float y, float deltaX, float deltaY) {
+			Gdx.app.log(TAG, "pan()"
+					+ " x: " + x
+					+ " y: " + y
+					+ " delta-x: " + deltaX
+					+ " delta-y: " + deltaY
+					);
+			return false;
+		}
+
+		@Override
+		public boolean panStop(float x, float y, int pointer, int button) {
+			Gdx.app.log(TAG, "panStop()"
+					+ " x: " + x
+					+ " y: " + y
+					);
+			return false;
+		}
+
+		@Override
+		public boolean zoom(float initialDistance, float distance) {
+			Gdx.app.log(TAG, "zoom()");
+			return false;
+		}
+
+		@Override
+		public boolean pinch(Vector2 initialPointer1, Vector2 initialPointer2,
+				Vector2 pointer1, Vector2 pointer2) {
+			Gdx.app.log(TAG, "pinch()");
+			return false;
+		}
+		
+	}
 	private static final String TAG = "RotatingBob";
 	ShaderProgram shader;
 	Mesh mesh;
@@ -59,7 +123,8 @@ public class RotatingBobDemo extends InputAdapter implements ApplicationListener
 		mesh.setIndices(new short[] {0, 1, 2, 2, 3, 0});
 		texture = new Texture(Gdx.files.internal("data/bobrgb888-32x32.png"));
 		
-		Gdx.input.setInputProcessor(this);
+		//Gdx.input.setInputProcessor(this);
+		Gdx.input.setInputProcessor(new GestureDetector(new MyGestureListener()));
 	}
 
 	Vector3 axis = new Vector3(0, 0, 1);
