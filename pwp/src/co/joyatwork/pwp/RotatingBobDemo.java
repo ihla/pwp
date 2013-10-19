@@ -18,6 +18,7 @@ package co.joyatwork.pwp;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Mesh;
@@ -27,7 +28,8 @@ import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector3;
 
-public class RotatingBobDemo implements ApplicationListener {
+public class RotatingBobDemo extends InputAdapter implements ApplicationListener {
+	private static final String TAG = "RotatingBob";
 	ShaderProgram shader;
 	Mesh mesh;
 	Texture texture;
@@ -47,7 +49,7 @@ public class RotatingBobDemo implements ApplicationListener {
 
 		shader = new ShaderProgram(vertexShader, fragmentShader);
 		if (shader.isCompiled() == false) {
-			Gdx.app.log("ShaderTest", shader.getLog());
+			Gdx.app.log(TAG, shader.getLog());
 			Gdx.app.exit();
 		}
 
@@ -56,6 +58,8 @@ public class RotatingBobDemo implements ApplicationListener {
 			1, 1, 0, -0.5f, 0.5f, 0, 1, 1, 1, 1, 0, 0});
 		mesh.setIndices(new short[] {0, 1, 2, 2, 3, 0});
 		texture = new Texture(Gdx.files.internal("data/bobrgb888-32x32.png"));
+		
+		Gdx.input.setInputProcessor(this);
 	}
 
 	Vector3 axis = new Vector3(0, 0, 1);
@@ -95,13 +99,30 @@ public class RotatingBobDemo implements ApplicationListener {
 
 	@Override
 	public void pause() {
-		// TODO Auto-generated method stub
-		
+		Gdx.app.log(TAG, "pause()");
 	}
 
 	@Override
 	public void resume() {
-		// TODO Auto-generated method stub
-		
+		Gdx.app.log(TAG, "resume()");
 	}
+	
+	@Override
+	public boolean touchDown (int screenX, int screenY, int pointer, int button) {
+		Gdx.app.log(TAG, "touchDown()");
+		return false;
+	}
+
+	@Override
+	public boolean touchUp (int screenX, int screenY, int pointer, int button) {
+		Gdx.app.log(TAG, "touchUp()");
+		return false;
+	}
+
+	@Override
+	public boolean touchDragged (int screenX, int screenY, int pointer) {
+		Gdx.app.log(TAG, "touchDragged()");
+		return false;
+	}
+
 }

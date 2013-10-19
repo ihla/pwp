@@ -28,11 +28,19 @@ public class LiveWallpaper extends AndroidLiveWallpaperService {
 	public void onCreateApplication () {
 		super.onCreateApplication();
 		
-		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
-		config.useGL20 = true;
+		AndroidApplicationConfiguration cfg = new AndroidApplicationConfiguration();
+        cfg.useAccelerometer = false;
+        cfg.useCompass = false;
+        cfg.useWakelock = false;
+        cfg.r = 8;
+        cfg.g = 8;
+        cfg.b = 8;
+        cfg.a = 8;
+        cfg.getTouchEventsForLiveWallpaper = true;
+		cfg.useGL20 = true;
 		
 		ApplicationListener listener = new MyLiveWallpaperListener();
-		initialize(listener, config);
+		initialize(listener, cfg);
 	}
 	
 	// implement AndroidWallpaperListener additionally to ApplicationListener 
