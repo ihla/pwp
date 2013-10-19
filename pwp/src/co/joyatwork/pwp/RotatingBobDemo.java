@@ -121,7 +121,10 @@ public class RotatingBobDemo extends InputAdapter implements ApplicationListener
 
 	@Override
 	public boolean touchDragged (int screenX, int screenY, int pointer) {
-		Gdx.app.log(TAG, "touchDragged()");
+		Gdx.app.log(TAG, "touchDragged()"
+				+ " x: " + screenX
+				+ " y: " + screenY
+				);
 		return false;
 	}
 
