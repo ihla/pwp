@@ -25,6 +25,8 @@ import com.badlogic.gdx.backends.android.AndroidWallpaperListener;
 
 public class ParticlesLiveWallpaper extends AndroidLiveWallpaperService {
 	
+	public static final String PREFS_NAME = "particles_settings";
+	
 	@Override
 	public void onCreateApplication () {
 		super.onCreateApplication();
@@ -50,7 +52,7 @@ public class ParticlesLiveWallpaper extends AndroidLiveWallpaperService {
 
 		public MyLiveWallpaperListener() {
 			super();
-            prefs = ParticlesLiveWallpaper.this.getSharedPreferences("particles_lwp_settings", 0);
+            prefs = ParticlesLiveWallpaper.this.getSharedPreferences(PREFS_NAME, 0);
             prefs.registerOnSharedPreferenceChangeListener(this);
             onSharedPreferenceChanged(prefs, null);
 
@@ -69,8 +71,12 @@ public class ParticlesLiveWallpaper extends AndroidLiveWallpaperService {
 
 		@Override
 		public void onSharedPreferenceChanged(
-				SharedPreferences sharedPreferences, String key) {
-			Log.i("ParticlesLiveWallpaper test", "onSharedPreferenceChanged" + " - key " + (key == null ? "null" : key));
+				SharedPreferences prefs, String key) {
+			Log.i(PREFS_NAME, "onSharedPreferenceChanged" 
+				+ " - value " 
+					+ Integer.valueOf(prefs.getString("particles_type", "0")));
+			int index = Integer.valueOf(prefs.getString("particles_type", "0"));
+			setEmmitter(index);
 			
 		}
 	}

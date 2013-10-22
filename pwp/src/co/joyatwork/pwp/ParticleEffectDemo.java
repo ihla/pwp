@@ -173,7 +173,7 @@ public class ParticleEffectDemo extends InputAdapter implements ApplicationListe
 				effect.getEmitters().add(emitter);
 				return false;
 			}
-
+			
 			@Override
 			public boolean mouseMoved (int x, int y) {
 				return false;
@@ -186,6 +186,33 @@ public class ParticleEffectDemo extends InputAdapter implements ApplicationListe
 		};
 
 		Gdx.input.setInputProcessor(inputProcessor);
+	}
+
+	public void setEmmitter (int index) {
+		//TODO why log causes NULL POINTER EXCEPTION
+		//Gdx.app.log(TAG, "setEmmitter() idx " + index);
+
+		if (index < 0)
+			return;
+		if (emitters == null)
+			return;
+		ParticleEmitter emitter = emitters.get(index);
+		if (emitter == null) 
+			return;
+		emitterIndex = index;
+		// if we've previously stopped the emitter reset it
+		if (emitter.isComplete()) 
+			emitter.reset();
+		particleCount = (int)(emitter.getEmission().getHighMax() * emitter.getLife().getHighMax() / 1000f);
+		particleCount = Math.max(0, particleCount);
+		if (particleCount > emitter.getMaxParticleCount()) 
+			emitter.setMaxParticleCount(particleCount * 2);
+		emitter.getEmission().setHigh(particleCount / emitter.getLife().getHighMax() * 1000);
+		effect.getEmitters().clear();
+		effect.getEmitters().add(emitter);
+		
+		//Gdx.app.log(TAG, "setEmmitter() set");
+
 	}
 
 	@Override

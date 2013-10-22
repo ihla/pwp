@@ -16,19 +16,43 @@
 package co.joyatwork.pwp;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
 
 public class ParticlesLivewallpaperSettings extends Activity {
 
-	public static class SettingsFragment extends PreferenceFragment {
-	    @Override
+	public static class SettingsFragment extends PreferenceFragment 
+		//TODO not sure if i need this listener here
+		implements SharedPreferences.OnSharedPreferenceChangeListener  {
+	    
+		@Override
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 
+	        getPreferenceManager().setSharedPreferencesName(
+	        		ParticlesLiveWallpaper.PREFS_NAME);
 	        // Load the preferences from an XML resource
 	        addPreferencesFromResource(R.xml.particles_lwp_preferences);
+	        getPreferenceManager().getSharedPreferences().registerOnSharedPreferenceChangeListener(
+	                this);
+
 	    }
+
+	    @Override
+		public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
+				String key) {
+			// TODO Auto-generated method stub
+			
+		}
+
+	    @Override
+		public void onDestroy() {
+	        getPreferenceManager().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(
+	                this);
+	        super.onDestroy();
+	    }
+
 	}
 
     @Override
