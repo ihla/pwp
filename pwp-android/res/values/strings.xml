@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">LibGDX Demo LWP</string>
+    <string name="bob_lwp_name">Rotating Bob</string>
+    <string name="particles_lwp_name">Particles</string>
+    <string name="parallax_lwp_name">Naive Parallax Demo</string>
+    <string name="particles_lwp_settings">Settings</string>
+    <string name="particles_lwp_settings_title">Select type</string>
+    <string name="particles_lwp_settings_summary">Choose type of particle effect</string>
 </resources>

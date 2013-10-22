@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string-array name="particle_effect_names">
+        <item>"Simple"</item>
+        <item>"Fire"</item>
+        <item>"Stars"</item>
+        <item>"Smoke"</item>
+    </string-array>
+
+    <string-array name="particle_effect_idx">
+        <item>"0"</item>
+        <item>"1"</item>
+        <item>"2"</item>
+        <item>"3"</item>
+    </string-array>
+    
+</resources>

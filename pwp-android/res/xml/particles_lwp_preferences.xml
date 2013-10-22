@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:title="@string/particles_lwp_settings"
+    android:key="particles_lwp_settings" >
+
+    <ListPreference
+        android:key="particles_type"
+        android:title="@string/particles_lwp_settings_title"
+        android:summary="@string/particles_lwp_settings_summary"
+        android:entries="@array/particle_effect_names"
+        android:entryValues="@array/particle_effect_idx" />
+
+</PreferenceScreen>
