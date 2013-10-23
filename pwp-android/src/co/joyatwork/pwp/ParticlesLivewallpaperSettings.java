@@ -29,7 +29,8 @@ public class ParticlesLivewallpaperSettings extends Activity {
 		@Override
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
-
+	        
+	        //TODO not sure if this ok here, should be in Activity.onCreate()?
 	        getPreferenceManager().setSharedPreferencesName(
 	        		ParticlesLiveWallpaper.PREFS_NAME);
 	        // Load the preferences from an XML resource
